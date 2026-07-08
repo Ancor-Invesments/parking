@@ -260,7 +260,7 @@
     </div>
     <div class="check-item">
       <input type="checkbox" id="c3"/>
-      <label for="c3">En caso de conocimiento previo por otro intermediario, me comprometo a comunicarlo <strong>por escrito antes de recibir información adicional</strong>.</label>
+      <label for="c3">Acepto que, en caso de formalizarse la operación, el Operador abonará a <strong>ANCOR INVESTMENTS 2023, S.L.</strong> unos honorarios equivalentes al <strong>10% de una anualidad de la renta pactada</strong>, más el IVA correspondiente.</label>
     </div>
 
     <hr class="section-divider"/>
@@ -284,6 +284,10 @@
     <div class="check-item" style="margin-top:1.25rem;">
       <input type="checkbox" id="c5"/>
       <label for="c5"><strong>Acepto y confirmo la veracidad de toda la información facilitada</strong> y doy mi conformidad expresa a la declaración anterior, que tiene plena validez como registro de intermediación.</label>
+    </div>
+    <div class="check-item" style="margin-top:0.9rem;">
+      <input type="checkbox" id="c6"/>
+      <label for="c6">Acepto la fecha propuesta para la visita: <strong>jueves 16 de julio a las 13:00 h</strong>.</label>
     </div>
 
     <button class="btn-primary" id="btnEnviar" onclick="submitForm()">Registrar visita</button>
@@ -372,7 +376,7 @@ function goStep1(){ setStep(1); }
 // ── step 2 submit ────────────────────────────────────────────────
 async function submitForm(){
   // validate checkboxes
-  const req = ['c1','c2','c4','c5'];
+  const req = ['c1','c2','c3','c4','c5','c6'];
   let ok = true;
   req.forEach(id => { if(!v(id).checked) ok = false; });
   if(!ok){ alert('Por favor acepte todas las declaraciones obligatorias para continuar.'); return; }
@@ -397,8 +401,10 @@ async function submitForm(){
     firma_nombre: val('firma-nombre'),
     declaracion_no_conocimiento_previo:       v('c1').checked ? 'SÍ' : 'NO',
     declaracion_reconocimiento_intermediacion: v('c2').checked ? 'SÍ' : 'NO',
+    declaracion_honorarios: v('c3').checked ? 'SÍ' : 'NO',
     declaracion_rgpd:      v('c4').checked ? 'SÍ' : 'NO',
     acepto_veracidad:      v('c5').checked ? 'SÍ' : 'NO',
+    acepto_fecha_visita:   v('c6').checked ? 'SÍ' : 'NO',
   };
 
   try {
