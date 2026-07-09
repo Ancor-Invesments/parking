@@ -285,10 +285,6 @@
       <input type="checkbox" id="c5"/>
       <label for="c5"><strong>Acepto y confirmo la veracidad de toda la información facilitada</strong> y doy mi conformidad expresa a la declaración anterior, que tiene plena validez como registro de intermediación.</label>
     </div>
-    <div class="check-item" style="margin-top:0.9rem;">
-      <input type="checkbox" id="c6"/>
-      <label for="c6">Acepto la fecha propuesta para la visita: <strong>jueves 16 de julio a las 13:00 h</strong>.</label>
-    </div>
 
     <button class="btn-primary" id="btnEnviar" onclick="submitForm()">Registrar visita</button>
     <button class="btn-back" onclick="goStep1()">← Volver y modificar datos</button>
@@ -376,7 +372,7 @@ function goStep1(){ setStep(1); }
 // ── step 2 submit ────────────────────────────────────────────────
 async function submitForm(){
   // validate checkboxes
-  const req = ['c1','c2','c3','c4','c5','c6'];
+  const req = ['c1','c2','c3','c4','c5'];
   let ok = true;
   req.forEach(id => { if(!v(id).checked) ok = false; });
   if(!ok){ alert('Por favor acepte todas las declaraciones obligatorias para continuar.'); return; }
@@ -404,7 +400,6 @@ async function submitForm(){
     declaracion_honorarios: v('c3').checked ? 'SÍ' : 'NO',
     declaracion_rgpd:      v('c4').checked ? 'SÍ' : 'NO',
     acepto_veracidad:      v('c5').checked ? 'SÍ' : 'NO',
-    acepto_fecha_visita:   v('c6').checked ? 'SÍ' : 'NO',
   };
 
   try {
